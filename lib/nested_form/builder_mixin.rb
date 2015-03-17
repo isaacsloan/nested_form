@@ -40,7 +40,7 @@ module NestedForm
         blueprint = {:id => fields_blueprint_id, :style => 'display: none'}
         block, options = @fields[fields_blueprint_id].values_at(:block, :options)
         options[:child_index] = "new_#{association}"
-        blueprint[:"data-blueprint"] = fields_for(association, model_object, options, &block).to_str
+        blueprint[:"data-blueprint"] = fields_for(association, model_object, options, &block).to_str.delete("\n")
         @template.content_tag(:div, nil, blueprint)
       end
       @template.link_to(*args, &block)
